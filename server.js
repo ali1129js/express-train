@@ -4,14 +4,22 @@ import cors from "cors";
 // app init
 const app = express();
 
-// add cors
+// Middlewares
+// -For handling Post request
+app.use(express.urlencoded({ extended: false }));
+// -For handling Post request as JSON
+app.use(express.json());
+// -add cors
 app.use(cors());
 
-//add middleware
+//add root route
 app.get("/", (req, res) => {
   res.send(data);
 });
-
+app.post("/post", (req, res) => {
+  res.status(201).send("posted");
+  console.log(req.body);
+});
 //fake data
 const data = [
   {
